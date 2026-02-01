@@ -1,11 +1,9 @@
 FROM php:8.2-cli
 
-# Install system deps
 RUN apt-get update && apt-get install -y \
-    git unzip zip libpng-dev libjpeg-dev libfreetype6-dev libonig-dev \
-    && docker-php-ext-install pdo pdo_mysql gd exif
+    git unzip zip libpng-dev libjpeg-dev libfreetype6-dev libonig-dev libzip-dev \
+    && docker-php-ext-install pdo pdo_mysql gd exif zip
 
-# Install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
